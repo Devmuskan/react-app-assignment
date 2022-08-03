@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppStore } from '../../store/store';
+import Pagination from '../Pagination/Pagination';
 import ForecastItem from './ForecastItem';
 import { ForecastContainer, ForecastItems, SectionTitle } from './styled';
 
@@ -11,13 +12,32 @@ const Forecast: React.FC = () => {
     forecast: state.weather.extendedWeatherData,
   }));
 
-  if (isInitial) return <></>;
+   const data = forecast;
+   const [loading, setLoading] = useState(true);
 
+   const [currentPage, setCurrentPage] = useState(1);
+   const [recordsPerPage] = useState(6);
+
+   const indexOfLastRecord = currentPage * recordsPerPage;
+   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+   const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+   const nPages = Math.ceil(data.length / recordsPerPage)
+
+  if (isInitial) return <></>;
+   console.log('currentRecords', currentRecords); 
   return (
     <ForecastContainer>
       <SectionTitle>Extended Forecast</SectionTitle>
-    
-        {forecast.map((item, i) => {
+     
+       
+
+       <div className='container mt-5'>
+       <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+        />
+            {currentRecords.map((item, i) => {
           
           return (
             <ForecastItems>
@@ -34,9 +54,14 @@ const Forecast: React.FC = () => {
           );
           
         })}
+            
+        </div>
       
     </ForecastContainer>
   );
+  
 };
+
+
 
 export default Forecast;
