@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css';
-const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
+const Pagination = ({ nPages, currentPage, setCurrentPage, paginationDay }) => {
     const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
     // const pageNumbers = weekday[pageNumber];

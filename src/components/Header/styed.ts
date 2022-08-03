@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
   height: 8rem;
@@ -10,6 +10,13 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.appTitleColor};
   font-size: 2.2rem;
 `;
+
+export const Subperagraph = styled.h1`
+  color: ${({ theme }) => theme.appTitleColor};
+  font-size: 1.2rem;
+  width: 100%;
+`;
+
 export const GithubLink = styled.a`
   margin-left: 1rem;
   svg {

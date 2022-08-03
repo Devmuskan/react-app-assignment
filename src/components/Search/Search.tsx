@@ -30,6 +30,7 @@ const Search: React.FC = () => {
     setSearchTerm(e.target.value);
   };
   const showPosition = (position: any) => {
+    console.log("lat", "long", position.coords.latitude, position.coords.longitude)
     dispatch(
       fetchWeather({
         lat: position.coords.latitude,
@@ -44,7 +45,6 @@ const Search: React.FC = () => {
       <LocationButton
         onClick={() => {
           if (navigator.geolocation) {
-            console.log("geolocation", navigator.geolocation);
             navigator.geolocation.getCurrentPosition(showPosition);
           } else {
             alert('Geolocation is not supported by this browser.');

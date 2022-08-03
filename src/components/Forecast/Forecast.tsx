@@ -13,6 +13,7 @@ const Forecast: React.FC = () => {
   }));
 
    const data = forecast;
+   console.log("forecast", forecast);
    const [loading, setLoading] = useState(true);
 
    const [currentPage, setCurrentPage] = useState(1);
@@ -24,20 +25,24 @@ const Forecast: React.FC = () => {
    const nPages = Math.ceil(data.length / recordsPerPage)
 
   if (isInitial) return <></>;
-   console.log('currentRecords', currentRecords); 
+  //  console.log('currentRecords', currentRecords); 
+
+   const paginationDay = data.map(item => item.day);
+   let uniquePaginationDay = paginationDay.filter((c, index) => {
+    return paginationDay.indexOf(c) === index;
+   });
+  //  console.log("paginationDAy", uniquePaginationDay);
   return (
     <ForecastContainer>
       <SectionTitle>Extended Forecast</SectionTitle>
-     
-       
-
        <div className='container mt-5'>
        <Pagination
                 nPages={nPages}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                paginationDay={uniquePaginationDay}
         />
-            {currentRecords.map((item, i) => {
+      {currentRecords.map((item, i) => {
           
           return (
             <ForecastItems>

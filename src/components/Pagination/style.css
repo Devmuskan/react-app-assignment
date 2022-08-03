@@ -6,11 +6,12 @@
 }
 
 .page-item {
-    background-color: aqua; 
+    background-color: none; 
 }
 
 .active {
     background-color: #6898d5; 
+    width: 5%;
 }
 
 a.disabled {
